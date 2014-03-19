@@ -2,7 +2,7 @@
 	"id": 0 // Private message ID
 	,"name": "" // Title of a PM
 
-	,"participants": [
+	,"users": [
 		{"id": 0}
 	]
 }
