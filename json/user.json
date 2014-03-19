@@ -1,0 +1,16 @@
+{
+	"id": 0 // User ID
+	,"name": "" // User name
+	,"email": ""
+	,"dateCreated": "YYYY-MM-DDTHH24:00:00"
+	,"lastActive": "YYYY-MM-DDTHH24:00:00"
+	,"ipaddress": "" // IPv4 or IPv6 address that was used to register the user
+	,"emailFromAdmins": true
+	,"emailNotifications": true
+	,"banned": true // Is this user banned
+	,"usergroups": [
+		{
+			"id": 0
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"author": 0 // ID of person who is following something
+
+	,"follows": [
+		{
+			"type": "conversation" // conversation|message|user
+			,"id": 0 // Thread ID
+		}
+	]
+}

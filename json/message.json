@@ -1,0 +1,8 @@
+{
+	"id": 0 // Private message ID
+	,"name": "" // Title of a PM
+
+	,"participants": [
+		{"id": 0}
+	]
+}

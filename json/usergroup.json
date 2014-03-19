@@ -1,0 +1,23 @@
+{
+	"id": 0
+	,"name": "" // Name of the usergroup
+	,"text": "" // Description of the usergroup
+
+	,"is_banned": true // Does this usergroup represent a set of banned users
+	,"is_moderator": true // Does this usergroup represent a set of moderators
+
+	,"forumPermissions": {
+		"canPostNew": true
+		,"canView": true
+		,"canEditOthers": true
+		,"canDeleteOthers": true
+		,"canCloseOwn": true
+		,"canOpenOwn": true
+	}
+
+	,"users": [
+		{
+			"id": 0
+		}
+	]
+}

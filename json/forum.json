@@ -1,0 +1,21 @@
+{
+	"id": 0 // Forum ID
+	,"name": "" // Title of a forum
+	,"text": "" // Forum description, if applicable
+	,"displayOrder": 0 // Sort sequence for displaying forums. Lower = higher in the list
+
+	,"usergroups": [
+		{
+			"id": 0 // Usergroup ID
+
+			// All of these are optional as forum specific permission overrides
+			// If not supplied the values from the related usergroup are used
+			,"canPostNew": true
+			,"canView": true
+			,"canEditOthers": true
+			,"canDeleteOthers": true
+			,"canCloseOwn": true
+			,"canOpenOwn": true
+		}
+	]
+}

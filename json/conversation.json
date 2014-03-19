@@ -1,0 +1,12 @@
+{
+	"id": 0 // ID of the thread
+	,"name": "" // Thread title
+	,"forumId": 0 // The forum this conversation exits within
+	,"author": 0 // Who created the thread
+	,"dateCreated": "YYYY-MM-DDTHH24:00:00"
+	,"viewCount": 0
+	,"open": true
+	,"sticky": true
+	,"moderated": true
+	,"deleted": true
+}

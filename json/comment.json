@@ -1,0 +1,22 @@
+{
+	"id": 0 // Post ID
+	,"onType": "conversation" // conversation|message|user
+	,"onId": 0 // Thread ID
+	,"inReplyTo": 0 // Comment ID this is in reply to, Parent ID in vBulletin
+	,"author": 0 // User ID
+	,"dateCreated": "YYYY-MM-DDTHH24:00:00"
+	,"ipaddress": "" // IPv4 or IPv6 address of user that created the comment
+	,"moderated": true // Indicates whether it is on the moderation queue
+	,"deleted": true // Indicates whether the comment has been soft deleted
+		// Note: in vBulletin visible = 0 means moderation, 1 = visible, 2 = deleted
+	,"versions": [
+		{
+			"editor": 0 // User Id 
+			,"dateModified": "YYYY-MM-DDTHH24:00:00"
+			,"headline": "" // Title of a comment, if applicable
+			,"text": "" // Comment body, if applicable (some systems record edits but not the content of an edit)
+			,"reason": "" // If applicable, why the item was edited
+			,"ipaddress": "" // IPv4 or IPv6 address of user that created/modified the comment
+		}
+	]
+}
