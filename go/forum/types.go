@@ -58,41 +58,38 @@ type Forum struct {
 }
 
 type Conversation struct {
-	Id              int64     `json:"id"`
-	Name            string    `json:"name"`
-	ForumId         int64     `json:"forumId, omitempty"`
-	Author          int64     `json:"author,omitempty"`
-	DateCreated     string    `json:"dateCreated,omitempty"`
-	DateCreatedTime time.Time `json:"-"`
-	ViewCount       int64     `json:"viewCount,omitempty"`
-	Open            bool      `json:"isOpen,omitempty"`
-	Sticky          bool      `json:"isSticky,omitempty"`
-	Moderated       bool      `json:"isModerated,omitempty"`
-	Deleted         bool      `json:"isDeleted,omitempty"`
+	Id          int64     `json:"id"`
+	Name        string    `json:"name"`
+	ForumId     int64     `json:"forumId, omitempty"`
+	Author      int64     `json:"author,omitempty"`
+	DateCreated time.Time `json:"dateCreated,omitempty"`
+	ViewCount   int64     `json:"viewCount,omitempty"`
+	Open        bool      `json:"isOpen,omitempty"`
+	Sticky      bool      `json:"isSticky,omitempty"`
+	Moderated   bool      `json:"isModerated,omitempty"`
+	Deleted     bool      `json:"isDeleted,omitempty"`
 }
 
 type Comment struct {
-	Id              int64            `json:"id"`
-	OnType          string           `json:"onType,omitempty"`
-	OnId            int64            `json:"onId,omitempty"`
-	InReplyTo       int64            `json:"inReplyTo,omitempty"`
-	Author          int64            `json:"author,omitempty"`
-	DateCreated     string           `json:"dateCreated,omitempty"`
-	DateCreatedTime time.Time        `json:"-"`
-	IpAddress       string           `json:"ipAddress,omitempty"`
-	Moderated       bool             `json:"isModerated,omitempty"`
-	Deleted         bool             `json:"isDeleted,omitempty"`
-	Versions        []CommentVersion `json:"versions"`
+	Id          int64            `json:"id"`
+	OnType      string           `json:"onType,omitempty"`
+	OnId        int64            `json:"onId,omitempty"`
+	InReplyTo   int64            `json:"inReplyTo,omitempty"`
+	Author      int64            `json:"author,omitempty"`
+	DateCreated time.Time        `json:"dateCreated,omitempty"`
+	IpAddress   string           `json:"ipAddress,omitempty"`
+	Moderated   bool             `json:"isModerated,omitempty"`
+	Deleted     bool             `json:"isDeleted,omitempty"`
+	Versions    []CommentVersion `json:"versions"`
 }
 
 type CommentVersion struct {
-	Editor           int64     `json:"editor"`
-	DateModified     string    `json:"dateModified,omitempty"`
-	DateModifiedTime time.Time `json:"-"`
-	Headline         string    `json:"headline,omitempty"`
-	Text             string    `json:"text"`
-	EditReason       string    `json:"editReason,omitempty"`
-	IpAddress        string    `json:"ipAddress,omitempty"`
+	Editor       int64     `json:"editor"`
+	DateModified time.Time `json:"dateModified,omitempty"`
+	Headline     string    `json:"headline,omitempty"`
+	Text         string    `json:"text"`
+	EditReason   string    `json:"editReason,omitempty"`
+	IpAddress    string    `json:"ipAddress,omitempty"`
 }
 
 type Message struct {
@@ -102,15 +99,14 @@ type Message struct {
 }
 
 type Attachment struct {
-	Id              int64     `json:"id"`
-	OnType          string    `json:"onType,omitempty"`
-	OnId            int64     `json:"onId,omitempty"`
-	Author          int64     `json:"author,omitempty"`
-	DateCreated     string    `json:"dateCreated,omitempty"`
-	DateCreatedTime time.Time `json:"-"`
-	Name            int64     `json:"name,omitempty"`
-	ContentSize     uint64    `json:"contentSize,omitempty"`
-	ContentUrl      string    `json:"contentUrl"`
+	Id          int64     `json:"id"`
+	OnType      string    `json:"onType,omitempty"`
+	OnId        int64     `json:"onId,omitempty"`
+	Author      int64     `json:"author,omitempty"`
+	DateCreated time.Time `json:"dateCreated,omitempty"`
+	Name        int64     `json:"name,omitempty"`
+	ContentSize uint64    `json:"contentSize,omitempty"`
+	ContentUrl  string    `json:"contentUrl"`
 }
 
 type Follow struct {
