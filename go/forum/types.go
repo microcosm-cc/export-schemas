@@ -12,13 +12,11 @@ type Association struct {
 }
 
 type User struct {
-	Id
+	Id                        int64     `json:"id"`
 	Name                      string    `json:"name"`
 	Email                     string    `json:"email"`
-	DateCreated               string    `json:"dateCreated,omitempty"`
-	DateCreatedTime           time.Time `json:"-"`
-	LastActive                string    `json:"lastActive,omitempty"`
-	LastActiveTime            time.Time `json:"-"`
+	DateCreated               time.Time `json:"dateCreated,omitempty"`
+	LastActive                time.Time `json:"lastActive,omitempty"`
 	IpAddress                 string    `json:"ipAddress,omitempty"`
 	ReceiveEmailFromAdmins    bool      `json:"receiveEmailFromAdmins,omitempty"`
 	ReceiveEmailNotifications bool      `json:"receiveEmailNotifications,omitempty"`
@@ -27,7 +25,7 @@ type User struct {
 }
 
 type Usergroup struct {
-	Id
+	Id               int64            `json:"id"`
 	Name             string           `json:"name"`
 	Text             string           `json:"text,omitempty"`
 	Banned           bool             `json:"isBanned,omitempty"`
@@ -48,7 +46,7 @@ type ForumPermissions struct {
 }
 
 type Forum struct {
-	Id
+	Id           int64       `json:"id"`
 	Name         string      `json:"name"`
 	Text         string      `json:"text,omitempty"`
 	DisplayOrder int32       `json:"displayOrder,omitempty"`
@@ -60,7 +58,7 @@ type Forum struct {
 }
 
 type Conversation struct {
-	Id
+	Id              int64     `json:"id"`
 	Name            string    `json:"name"`
 	ForumId         int64     `json:"forumId, omitempty"`
 	Author          int64     `json:"author,omitempty"`
@@ -74,8 +72,9 @@ type Conversation struct {
 }
 
 type Comment struct {
-	Id
-	Association
+	Id              int64            `json:"id"`
+	OnType          string           `json:"onType,omitempty"`
+	OnId            int64            `json:"onId,omitempty"`
 	InReplyTo       int64            `json:"inReplyTo,omitempty"`
 	Author          int64            `json:"author,omitempty"`
 	DateCreated     string           `json:"dateCreated,omitempty"`
@@ -97,14 +96,15 @@ type CommentVersion struct {
 }
 
 type Message struct {
-	Id
+	Id    int64  `json:"id"`
 	Name  string `json:"name"`
 	Users []Id   `json:"users,omitempty"`
 }
 
 type Attachment struct {
-	Id
-	Association
+	Id              int64     `json:"id"`
+	OnType          string    `json:"onType,omitempty"`
+	OnId            int64     `json:"onId,omitempty"`
 	Author          int64     `json:"author,omitempty"`
 	DateCreated     string    `json:"dateCreated,omitempty"`
 	DateCreatedTime time.Time `json:"-"`
