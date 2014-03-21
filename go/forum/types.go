@@ -26,7 +26,7 @@ type User struct {
 
 type Usergroup struct {
 	Id               int64            `json:"id"`
-	Name             string           `json:"name"`
+	Name             string           `json:"name,omitempty"`
 	Text             string           `json:"text,omitempty"`
 	Banned           bool             `json:"isBanned,omitempty"`
 	Moderator        bool             `json:"isModerator,omitempty"`
@@ -49,12 +49,13 @@ type Forum struct {
 	Id           int64       `json:"id"`
 	Name         string      `json:"name"`
 	Text         string      `json:"text,omitempty"`
-	DisplayOrder int32       `json:"displayOrder,omitempty"`
+	DisplayOrder int64       `json:"displayOrder,omitempty"`
 	Open         bool        `json:"isOpen,omitempty"`
 	Sticky       bool        `json:"isSticky,omitempty"`
 	Moderated    bool        `json:"isModerated,omitempty"`
 	Deleted      bool        `json:"isDeleted,omitempty"`
 	Usergroups   []Usergroup `json:"usergroups,omitempty"`
+	Moderators   []Id        `json:"moderators,omitempty"`
 }
 
 type Conversation struct {
