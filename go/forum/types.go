@@ -44,14 +44,16 @@ An example:
    list all of the users within a usergroup if criteria takes care of it.
 */
 type Usergroup struct {
-	ID               int64            `json:"id"`
-	Name             string           `json:"name,omitempty"`
-	Text             string           `json:"text,omitempty"`
-	Banned           bool             `json:"isBanned,omitempty"`
-	Moderator        bool             `json:"isModerator,omitempty"`
-	ForumPermissions ForumPermissions `json:"forumPermissions,omitempty"`
-	Users            []ID             `json:"users,omitempty"`
-	Criteria         []Criterion      `json:"criteria,omitempty"`
+	ID                int64            `json:"id"`
+	Name              string           `json:"name,omitempty"`
+	Text              string           `json:"text,omitempty"`
+	Banned            bool             `json:"isBanned,omitempty"`
+	Moderator         bool             `json:"isModerator,omitempty"`
+	ForumPermissions  ForumPermissions `json:"forumPermissions,omitempty"`
+	IncludeRegistered bool             `json:"includeRegisteredUsers,omitempty"`
+	IncludeGuests     bool             `json:"includeGuests,omitempty"`
+	Users             []ID             `json:"users,omitempty"`
+	Criteria          []Criterion      `json:"criteria,omitempty"`
 }
 
 // ForumPermissions describes the permissions that users within a usergroup have
