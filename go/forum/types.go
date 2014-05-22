@@ -25,10 +25,24 @@ type User struct {
 	Usergroups                []ID      `json:"usergroups,omitempty"`
 }
 
-// Usergroup represents the concept of a group of users that share a set of
-// permissions. Users are included into a usergroup either explicitly (this
-// user is in this group) or implicitly (anyone who has more than 1,500 comments
-// is in this group).
+/*
+Usergroup represents the concept of a group of users that share a set of
+permissions.
+
+Users are included into a usergroup either explicitly (this user is in this
+group) or implicitly (anyone who has more than 1,500 comments is in this group).
+
+Unless explicitly declared and documented in a source system, exports systems
+should assume that if a usergroup has criteria for implicit inclusion in a
+usergroup, that explicit inclusion does not apply.
+
+An example:
+   If vBulletin has usergroup promotions defined to automatically move users
+   into a usergroup, then an export system need only define the promotions that
+   would move someone into this usergroup as criteria of this usergroup to
+   implicitly include all of those users. You do not need to explicitly
+   list all of the users within a usergroup if criteria takes care of it.
+*/
 type Usergroup struct {
 	ID               int64            `json:"id"`
 	Name             string           `json:"name,omitempty"`
@@ -64,8 +78,10 @@ An example:
    Criterion{OrGroup: 0, Key: "is_member", Predicate "eq", Value: true}
    Criterion{OrGroup: 1, Key: "foo", Predicate "eq", Value: "bar"}
 
-Would be applied as:
-   (comments >= 1500 AND is_member == true) OR foo == "bar"
+Should be equivalent to:
+   All users where
+        (user.comments >= 1500 AND user.is_member == true)
+     OR user.foo == "bar"
 
 It is the responsibility of an importing system to determine the meaning of
 the Key field.
