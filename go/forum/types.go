@@ -175,11 +175,35 @@ type CommentVersion struct {
 	IPAddress    string    `json:"ipAddress,omitempty"`
 }
 
-// Message describes a private message between one or more people
+// Message describes a private message between one or more people. Different
+// forum products handle this differently, for some private messages are no
+// different from comments (and use comment identifiers), whereas other systems
+// treat private messages as an entirely unique construct. The essence is the
+// same though: Some text/markup from 1 person to 1 or many people, with some
+// systems allowing a BCC to 1 or many people. Most systems treat private
+// messages as if they were SMS messages to a one-time distribution list
 type Message struct {
-	ID    int64  `json:"id"`
-	Name  string `json:"name"`
-	Users []ID   `json:"users,omitempty"`
+	ID     int64  `json:"id"`
+	Name   string `json:"name"`
+	Author int64  `json:"author,omitempty"`
+
+	// If deleted = true then the sender has deleted their copy.
+	Deleted     bool               `json:"isDeleted,omitempty"`
+	To          []MessageRecipient `json:"to,omitempty"`
+	BCC         []MessageRecipient `json:"bcc,omitempty"`
+	InReplyTo   int64              `json:"inReplyTo,omitempty"`
+	DateCreated time.Time          `json:"dateCreated,omitempty"`
+	IPAddress   string             `json:"ipAddress,omitempty"`
+	Versions    []CommentVersion   `json:"versions"`
+}
+
+// MessageRecipient tracks recipients of a message and indicates whether the
+// recipient still has a copy of the message
+type MessageRecipient struct {
+	ID int64 `json:"id"`
+
+	// If deleted = true then the recipient has deleted their copy.
+	Deleted bool `json:"isDeleted,omitempty"`
 }
 
 // Attachment represents a file that may be attached to a comment or other type.
