@@ -204,24 +204,38 @@ type MessageRecipient struct {
 
 	// If deleted = true then the recipient has deleted their copy.
 	Deleted bool `json:"isDeleted,omitempty"`
+	Read    bool `json:"isRead,omitempty"`
 }
 
 // Attachment represents a file that may be attached to a comment or other type.
 type Attachment struct {
-	ID int64 `json:"id"`
-	Association
-	Author      int64     `json:"author,omitempty"`
-	DateCreated time.Time `json:"dateCreated,omitempty"`
-	Name        int64     `json:"name,omitempty"`
-	ContentSize uint64    `json:"contentSize,omitempty"`
-	ContentURL  string    `json:"contentUrl"`
+	ID           int64         `json:"id"`
+	Author       int64         `json:"author,omitempty"`
+	DateCreated  time.Time     `json:"dateCreated,omitempty"`
+	Associations []Association `json:"associations"`
+	Name         string        `json:"name,omitempty"`
+	ContentSize  int64         `json:"contentSize,omitempty"`
+	ContentURL   string        `json:"contentUrl"`
+	MimeType     string        `json:"mimetype"`
 }
 
 // Follow represents a like/follow/subscribe relationship between a user and
 // any content on the site
 type Follow struct {
-	Author  int64         `json:"author"`
-	Follows []Association `json:"follows"`
+	Author               int64          `json:"author"`
+	Users                []FollowNotify `json:"users"`
+	UsersIgnored         []int64        `json:"usersIgnored"`
+	Forums               []FollowNotify `json:"forums"`
+	ForumsIgnored        []int64        `json:"forumsIgnored"`
+	Conversations        []FollowNotify `json:"conversations"`
+	ConversationsIgnored []int64        `json:"conversationsIgnored"`
+}
+
+// FollowNotify encapsulates a followed item and whether the user wants an
+// explicit (email/SMS) notification when the item is updated.
+type FollowNotify struct {
+	ID     int64 `json:"id"`
+	Notify bool  `json:"notify"`
 }
 
 // Association describes any content by type and ID.
