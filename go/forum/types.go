@@ -13,16 +13,17 @@ type ID struct {
 // all forums have a concept of a username and that users have an email address
 // and an identifier
 type User struct {
-	ID                        int64     `json:"id"`
-	Name                      string    `json:"name"`
-	Email                     string    `json:"email"`
-	DateCreated               time.Time `json:"dateCreated,omitempty"`
-	LastActive                time.Time `json:"lastActive,omitempty"`
-	IPAddress                 string    `json:"ipAddress,omitempty"`
-	ReceiveEmailFromAdmins    bool      `json:"receiveEmailFromAdmins,omitempty"`
-	ReceiveEmailNotifications bool      `json:"receiveEmailNotifications,omitempty"`
-	Banned                    bool      `json:"isBanned,omitempty"`
-	Usergroups                []ID      `json:"usergroups,omitempty"`
+	ID                        int64      `json:"id"`
+	Name                      string     `json:"name"`
+	Email                     string     `json:"email"`
+	DateCreated               time.Time  `json:"dateCreated,omitempty"`
+	LastActive                time.Time  `json:"lastActive,omitempty"`
+	IPAddress                 string     `json:"ipAddress,omitempty"`
+	ReceiveEmailFromAdmins    bool       `json:"receiveEmailFromAdmins,omitempty"`
+	ReceiveEmailNotifications bool       `json:"receiveEmailNotifications,omitempty"`
+	Banned                    bool       `json:"isBanned,omitempty"`
+	Usergroups                []ID       `json:"usergroups,omitempty"`
+	Avatar                    Attachment `json:"avatar,omitempty"`
 }
 
 /*
@@ -212,11 +213,13 @@ type Attachment struct {
 	ID           int64         `json:"id"`
 	Author       int64         `json:"author,omitempty"`
 	DateCreated  time.Time     `json:"dateCreated,omitempty"`
-	Associations []Association `json:"associations"`
+	Associations []Association `json:"associations,omitempty"`
 	Name         string        `json:"name,omitempty"`
 	ContentSize  int64         `json:"contentSize,omitempty"`
 	ContentURL   string        `json:"contentUrl"`
 	MimeType     string        `json:"mimetype"`
+	Width        int64         `json:"width,omitempty"`
+	Height       int64         `json:"height,omitempty"`
 }
 
 // Follow represents a like/follow/subscribe relationship between a user and
