@@ -4,15 +4,28 @@ package forum
 
 import "time"
 
+const (
+	AttachmentsPath   string = "attachments/"
+	CommentsPath      string = "comments/"
+	ConversationsPath string = "conversations/"
+	FollowsPath       string = "follows/"
+	ForumsPath        string = "forums/"
+	MessagesPath      string = "messages/"
+	ProfilesPath      string = "profiles/"
+	RolesPath         string = "roles/"
+)
+
 // ID represents an identifier of a thing within a forum
 type ID struct {
 	ID int64 `json:"id"`
 }
 
-// User represents basic knowledge of a user within a forum. It is presumed that
-// all forums have a concept of a username and that users have an email address
-// and an identifier
-type User struct {
+// Profiles represents basic knowledge of a user within a forum. It is presumed
+// that all forums have a concept of a username and that users have an email
+// address and an identifier. It is not presumed that either the email or
+// username is the unique identifier, systems that import users are free to
+// merge duplicates based on email address or username.
+type Profile struct {
 	ID                        int64      `json:"id"`
 	Name                      string     `json:"name"`
 	Email                     string     `json:"email"`
@@ -27,24 +40,21 @@ type User struct {
 }
 
 /*
-Usergroup represents the concept of a group of users that share a set of
-permissions.
+Role represents the concept of a group of users that share a set of
+permissions. This maps very neatly onto the concept of usergroups that a lot of
+forums have.
 
-Users are included into a usergroup either explicitly (this user is in this
+Users are included into a role either explicitly (this user is in this
 group) or implicitly (anyone who has more than 1,500 comments is in this group).
 
-Unless explicitly declared and documented in a source system, exports systems
-should assume that if a usergroup has criteria for implicit inclusion in a
-usergroup, that explicit inclusion does not apply.
-
-An example:
-   If vBulletin has usergroup promotions defined to automatically move users
-   into a usergroup, then an export system need only define the promotions that
-   would move someone into this usergroup as criteria of this usergroup to
-   implicitly include all of those users. You do not need to explicitly
-   list all of the users within a usergroup if criteria takes care of it.
+Unless explicitly declared and documented in a source system, export systems
+should assume that if a role has criteria for implicit inclusion in a
+usergroup, then explicit inclusion does not apply. i.e. If a vBulletin promotion
+puts users into a usergroup, then the promotion can be considered a criteria and
+exporting systems shouldn't bother listing all users in the individually, as the
+assumption is that they were put there by meeting the criteria.
 */
-type Usergroup struct {
+type Role struct {
 	ID                int64            `json:"id"`
 	Name              string           `json:"name,omitempty"`
 	Text              string           `json:"text,omitempty"`
@@ -115,16 +125,17 @@ const (
 // container for content. It is assumened that usergroup permissions are applied
 // generally to the forum level and not to specific items within the forum.
 type Forum struct {
-	ID           int64       `json:"id"`
-	Name         string      `json:"name"`
-	Text         string      `json:"text,omitempty"`
-	DisplayOrder int64       `json:"displayOrder,omitempty"`
-	Open         bool        `json:"isOpen,omitempty"`
-	Sticky       bool        `json:"isSticky,omitempty"`
-	Moderated    bool        `json:"isModerated,omitempty"`
-	Deleted      bool        `json:"isDeleted,omitempty"`
-	Usergroups   []Usergroup `json:"usergroups,omitempty"`
-	Moderators   []ID        `json:"moderators,omitempty"`
+	ID           int64  `json:"id"`
+	Name         string `json:"name"`
+	Author       int64  `json:"author,omitempty"`
+	Text         string `json:"text,omitempty"`
+	DisplayOrder int64  `json:"displayOrder,omitempty"`
+	Open         bool   `json:"isOpen,omitempty"`
+	Sticky       bool   `json:"isSticky,omitempty"`
+	Moderated    bool   `json:"isModerated,omitempty"`
+	Deleted      bool   `json:"isDeleted,omitempty"`
+	Usergroups   []Role `json:"usergroups,omitempty"`
+	Moderators   []ID   `json:"moderators,omitempty"`
 }
 
 // Conversation represents a discussion/thread within a forum.
