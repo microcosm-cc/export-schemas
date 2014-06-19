@@ -15,6 +15,30 @@ const (
 	RolesPath         string = "roles/"
 )
 
+// DirIndex provides a way of describing which items were exported, it spares
+// the importer from walking a directory tree of potentially millions of items
+// by describing them in one file.
+// This file should be called `index.json` and found within each exported/type
+// directory. i.e. if exported/ is your root, and exported/comments/ holds all
+// comments and exported/comments/1.json is comment ID = 1, then we would hope
+// to find exported/comments/index.json with a file reference that is:
+// {"id":1, "path":"1.json"}
+type DirIndex struct {
+	Type  string    `json:"type"`
+	Files []DirFile `json:"files"`
+}
+
+// DirFile describes a single exported item within a child of the exported
+// directory
+type DirFile struct {
+	ID   int64  `json:"id"`
+	Path string `json:"path"`
+
+	// Email is used by profiles to allow us to identify duplicates and skip
+	// them during concurrent process of non-duplicates
+	Email string `json:"email,omitempty"`
+}
+
 // ID represents an identifier of a thing within a forum
 type ID struct {
 	ID int64 `json:"id"`
