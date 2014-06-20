@@ -89,6 +89,10 @@ type Role struct {
 	IncludeGuests     bool             `json:"includeGuests,omitempty"`
 	Users             []ID             `json:"users,omitempty"`
 	Criteria          []Criterion      `json:"criteria,omitempty"`
+
+	// DefaultRole indicates that this is a role that will be applied to all
+	// forums
+	DefaultRole bool `json:"default,omitempty"`
 }
 
 // ForumPermissions describes the permissions that users within a usergroup have
