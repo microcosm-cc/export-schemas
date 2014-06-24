@@ -254,7 +254,7 @@ type Attachment struct {
 	DateCreated  time.Time     `json:"dateCreated,omitempty"`
 	Associations []Association `json:"associations,omitempty"`
 	Name         string        `json:"name,omitempty"`
-	ContentSize  int64         `json:"contentSize,omitempty"`
+	ContentSize  int32         `json:"contentSize,omitempty"`
 	ContentURL   string        `json:"contentUrl"`
 	MimeType     string        `json:"mimetype"`
 	Width        int64         `json:"width,omitempty"`
